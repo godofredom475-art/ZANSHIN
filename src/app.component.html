@@ -1,0 +1,296 @@
+
+<div class="min-h-screen flex flex-col relative overflow-x-hidden bg-black text-white">
+  
+  <!-- Navigation -->
+  <nav class="fixed top-0 w-full z-40 bg-black/90 backdrop-blur-md border-b border-white/10">
+    <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+      <div class="flex items-center gap-2 cursor-pointer" (click)="toggleView('home')">
+        <div class="w-8 h-8 bg-white text-black rounded-lg flex items-center justify-center font-bold text-xl italic shadow-lg shadow-white/10">
+          Z
+        </div>
+        <span class="text-xl font-bold tracking-wide text-white">ZANSHIN</span>
+      </div>
+      
+      <div class="hidden md:flex gap-8 text-sm font-medium text-neutral-400">
+        <button (click)="toggleView('home')" class="hover:text-white transition-colors">Início</button>
+        <button (click)="scrollToDownload()" class="hover:text-white transition-colors">Download</button>
+      </div>
+
+      <button (click)="scrollToDownload()" class="bg-white hover:bg-neutral-200 text-black px-5 py-2 rounded-full text-sm font-bold transition-all">
+        Baixar
+      </button>
+    </div>
+  </nav>
+
+  <!-- CONTENT SWITCHER -->
+  @if (view() === 'home') {
+    <!-- HOME VIEW -->
+    <main>
+      <!-- Hero Section -->
+      <header class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 px-6">
+        <!-- Monochrome Glow -->
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full max-w-7xl pointer-events-none">
+          <div class="absolute top-20 left-10 w-72 h-72 bg-white/5 rounded-full blur-[100px]"></div>
+          <div class="absolute bottom-20 right-10 w-96 h-96 bg-neutral-500/10 rounded-full blur-[120px]"></div>
+        </div>
+
+        <div class="container mx-auto text-center relative z-10">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-neutral-900 border border-neutral-700 text-neutral-300 text-xs font-semibold mb-6 animate-float">
+            <span class="w-2 h-2 rounded-full bg-white animate-pulse"></span>
+            Versão v2.704
+          </div>
+          
+          <h1 class="text-5xl lg:text-7xl font-black mb-6 leading-tight tracking-tight">
+            ROBLOX <br>
+            <span class="bg-clip-text text-transparent bg-gradient-to-r from-white via-neutral-400 to-neutral-600">UNLEASHED</span>
+          </h1>
+          
+          <p class="text-lg text-neutral-400 max-w-2xl mx-auto mb-10 leading-relaxed">
+            Executor Android de Alta Performance.
+            Design Monocromático. Velocidade Pura.
+          </p>
+
+          <div class="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16">
+            <button (click)="scrollToDownload()" class="group relative px-8 py-4 bg-white hover:bg-neutral-200 text-black font-bold rounded-xl shadow-xl shadow-white/5 transition-all w-full sm:w-auto">
+              <span class="flex items-center justify-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                Baixar Grátis
+              </span>
+            </button>
+            <a href="https://discord.gg/zanshin" target="_blank" class="px-8 py-4 bg-neutral-900 hover:bg-neutral-800 text-white font-bold rounded-xl border border-neutral-700 transition-all w-full sm:w-auto flex items-center justify-center gap-2">
+               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path><path d="M9 18c-4.51 2-5-2-7-2"></path></svg>
+               Discord
+            </a>
+          </div>
+
+          <!-- Image Area (Black and White filtered) -->
+          <div class="relative max-w-4xl mx-auto rounded-2xl overflow-hidden shadow-2xl border border-neutral-800 group">
+            <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent z-10"></div>
+            <img ngSrc="https://picsum.photos/seed/zanshin/1200/600" width="1200" height="600" priority class="w-full object-cover grayscale opacity-80 group-hover:opacity-100 transition-opacity duration-700" alt="Zanshin Executor Interface">
+            <div class="absolute bottom-6 left-6 z-20 text-left">
+              <h3 class="text-white font-bold text-xl uppercase tracking-widest">Interface Zanshin</h3>
+              <p class="text-neutral-400 text-sm">Simplicidade é a máxima sofisticação</p>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- Features Grid -->
+      <section id="features" class="py-20 px-6 bg-neutral-900/30 border-t border-neutral-900">
+        <div class="container mx-auto">
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            @for (feature of features; track feature.title) {
+              <div class="p-6 rounded-2xl bg-black border border-neutral-800 hover:border-white/30 transition-colors group">
+                <div class="w-12 h-12 bg-neutral-900 rounded-lg flex items-center justify-center mb-4 text-white group-hover:bg-white group-hover:text-black transition-colors">
+                  @if (feature.icon === 'zap') {
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+                  }
+                  @if (feature.icon === 'key') {
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21 2-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0 2 2 2.222 2.222m-4.222-4.222 2.222-2.222m-2.222 2.222 2.222 2.222m-2.222-2.222 2.222-2.222"></path></svg>
+                  }
+                  @if (feature.icon === 'shield') {
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                  }
+                  @if (feature.icon === 'layout') {
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>
+                  }
+                </div>
+                <h3 class="text-xl font-bold mb-2 text-white">{{ feature.title }}</h3>
+                <p class="text-neutral-400 text-sm leading-relaxed">{{ feature.desc }}</p>
+              </div>
+            }
+          </div>
+        </div>
+      </section>
+
+      <!-- Download Section -->
+      <section id="download" class="py-20 px-6">
+        <div class="container mx-auto max-w-5xl">
+          <div class="text-center mb-16">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4 text-white">DOWNLOAD</h2>
+            <p class="text-neutral-400 uppercase tracking-widest text-sm">Apenas Android</p>
+          </div>
+
+          <div class="flex justify-center">
+            @for (dl of downloads; track dl.platform) {
+              <div class="relative rounded-3xl p-8 border flex flex-col items-center text-center transition-all duration-300 w-full max-w-md bg-neutral-900 border-neutral-800 shadow-2xl hover:scale-105 hover:border-white/50">
+                
+                <div class="absolute -top-4 bg-white text-black text-xs font-bold px-4 py-1 rounded-full uppercase tracking-wider">
+                  Recomendado
+                </div>
+
+                <div class="w-24 h-24 mb-6 rounded-full bg-black border border-neutral-800 flex items-center justify-center text-white">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 0 1 10 10v9a1 1 0 0 1-1 1h-3a1 1 0 0 1-1-1v-2a1 1 0 0 0-1-1H8a1 1 0 0 0-1 1v2a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1v-9a10 10 0 0 1 10-10z"></path><path d="M7.5 9.5a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3z"></path><path d="M16.5 9.5a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3z"></path></svg>
+                </div>
+
+                <h3 class="text-2xl font-bold mb-2">{{ dl.platform }}</h3>
+                <span class="text-base text-neutral-400 mb-8">{{ dl.version }}</span>
+
+                <a [href]="dl.url" 
+                   class="w-full py-4 rounded-xl font-bold transition-all flex items-center justify-center gap-2 bg-white hover:bg-neutral-200 text-black shadow-lg shadow-white/10">
+                   <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                   BAIXAR APK
+                </a>
+              </div>
+            }
+          </div>
+        </div>
+      </section>
+    </main>
+  } @else {
+    <!-- BYPASSER VIEW -->
+    <main class="pt-32 pb-20 px-6 min-h-screen bg-black flex flex-col items-center">
+      <div class="w-full max-w-2xl text-center">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-neutral-900 border border-neutral-700 text-neutral-300 text-xs font-semibold mb-6">
+          <span class="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>
+          Ferramenta Beta
+        </div>
+
+        <h2 class="text-4xl font-black mb-4 text-white">BLOQUEADOR DE ANÚNCIOS</h2>
+        <p class="text-neutral-400 mb-12">Cole o link com anúncios abaixo para tentar acessar o destino final diretamente.</p>
+
+        <div class="bg-neutral-900 border border-neutral-800 rounded-2xl p-6 shadow-2xl">
+          <div class="flex flex-col gap-4">
+            <input 
+              type="text" 
+              [(ngModel)]="bypassUrl"
+              placeholder="Cole o link aqui (Ex: linkvertise...)" 
+              class="w-full bg-black border border-neutral-700 rounded-xl px-4 py-4 text-white focus:outline-none focus:border-white transition-colors"
+            >
+            <button 
+              (click)="runBypass()"
+              [disabled]="isBypassing() || !bypassUrl()"
+              class="w-full py-4 bg-white hover:bg-neutral-200 disabled:opacity-50 disabled:cursor-not-allowed text-black font-bold rounded-xl transition-all flex justify-center items-center gap-2"
+            >
+              @if (isBypassing()) {
+                <div class="w-5 h-5 border-2 border-black border-t-transparent rounded-full animate-spin"></div>
+                Processando...
+              } @else {
+                REMOVER ANÚNCIOS
+              }
+            </button>
+          </div>
+
+          @if (bypassResult()) {
+            <div class="mt-6 p-4 bg-black border border-neutral-700 rounded-xl text-left animate-pulse-glow">
+              <p class="text-green-400 text-sm font-bold mb-2">Sucesso!</p>
+              <p class="text-white break-all text-sm">{{ bypassResult() }}</p>
+            </div>
+          }
+        </div>
+
+        <button (click)="toggleView('home')" class="mt-8 text-neutral-500 hover:text-white underline text-sm">
+          Voltar para o site
+        </button>
+      </div>
+    </main>
+  }
+
+  <!-- Footer with Requested Buttons -->
+  <footer class="py-12 border-t border-neutral-900 bg-black text-center">
+    <div class="container mx-auto px-6">
+      <div class="flex flex-col md:flex-row justify-center items-center gap-6 mb-8">
+        <button (click)="openModal('about')" class="px-6 py-2 rounded-full border border-neutral-800 hover:bg-white hover:text-black transition-all text-sm font-bold text-neutral-400">
+          Sobre
+        </button>
+        <button (click)="openModal('privacy')" class="px-6 py-2 rounded-full border border-neutral-800 hover:bg-white hover:text-black transition-all text-sm font-bold text-neutral-400">
+          Privacidade
+        </button>
+        <button (click)="openModal('roadmap')" class="px-6 py-2 rounded-full border border-neutral-800 hover:bg-white hover:text-black transition-all text-sm font-bold text-neutral-400">
+          O que a gente vai fazer
+        </button>
+      </div>
+      
+      <p class="text-neutral-600 text-xs uppercase tracking-widest">
+        &copy; {{ currentYear }} Zanshin Executor. 
+      </p>
+    </div>
+  </footer>
+
+  <!-- Modal Overlay -->
+  @if (activeModal()) {
+    <div class="fixed inset-0 z-[60] flex items-center justify-center px-4">
+      <!-- Backdrop -->
+      <div class="absolute inset-0 bg-black/80 backdrop-blur-sm transition-opacity" (click)="closeModal()"></div>
+      
+      <!-- Modal Content -->
+      <div class="relative bg-neutral-900 border border-neutral-700 rounded-2xl w-full max-w-2xl p-8 shadow-2xl animate-float">
+        <button (click)="closeModal()" class="absolute top-4 right-4 p-2 text-neutral-400 hover:text-white transition-colors">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+
+        <!-- Dynamic Content -->
+        @if (activeModal() === 'about') {
+          <h3 class="text-2xl font-bold mb-4 text-white">Sobre o Zanshin</h3>
+          <div class="space-y-4 text-neutral-300 leading-relaxed">
+            <p>O <strong>Zanshin Executor</strong> é uma ferramenta desenvolvida por entusiastas para desbloquear o verdadeiro potencial do Roblox no Android. Utilizando a base robusta do Delta, modificamos e otimizamos a injeção de scripts para garantir estabilidade máxima.</p>
+            <p>Nosso foco é simplicidade e performance. Removemos o "bloatware" (recursos inúteis) e focamos no que importa: executar scripts nível 8 sem crashar o seu jogo.</p>
+            <p class="text-xs text-neutral-500 mt-4">Nota: Este é um software educacional de terceiros e não é afiliado à Roblox Corporation.</p>
+          </div>
+        }
+
+        @if (activeModal() === 'privacy') {
+          <h3 class="text-2xl font-bold mb-4 text-white">Política de Privacidade</h3>
+          <div class="space-y-4 text-neutral-300 leading-relaxed">
+            <p>Sua segurança digital é prioridade. Diferente de outros executores, o Zanshin opera sob uma política de <strong>Dados Mínimos</strong>.</p>
+            <ul class="list-disc pl-5 space-y-2">
+              <li><strong>Não coletamos</strong> senhas ou dados de login da sua conta Roblox.</li>
+              <li><strong>Não vendemos</strong> seus dados de navegação.</li>
+              <li>As permissões solicitadas (Armazenamento) servem exclusivamente para injetar os scripts e salvar suas configurações locais.</li>
+            </ul>
+            <p>Recomendamos sempre o uso de contas alternativas ("alts") ao testar scripts de fontes desconhecidas.</p>
+          </div>
+        }
+
+        @if (activeModal() === 'roadmap') {
+          <h3 class="text-2xl font-bold mb-4 text-white">O que a gente vai fazer</h3>
+          <div class="space-y-4 text-neutral-300 leading-relaxed">
+            <p>Estamos apenas começando. Aqui está o nosso roteiro de atualizações para 2024/2025:</p>
+            
+            <div class="grid gap-4 mt-6">
+              <div class="bg-black/50 p-4 rounded-xl border border-neutral-800 flex gap-4 items-start">
+                <span class="text-green-500 font-bold">01.</span>
+                <div>
+                  <h4 class="font-bold text-white">Hub de Scripts Zanshin</h4>
+                  <p class="text-sm text-neutral-400">Uma biblioteca integrada dentro do executor com os melhores scripts verificados (Blox Fruits, Brookhaven, etc).</p>
+                </div>
+              </div>
+
+              <div class="bg-black/50 p-4 rounded-xl border border-neutral-800 flex gap-4 items-start">
+                <span class="text-yellow-500 font-bold">02.</span>
+                <div>
+                  <h4 class="font-bold text-white">Modo "Lite" Extremo</h4>
+                  <p class="text-sm text-neutral-400">Otimização específica para celulares com 2GB/3GB de RAM para reduzir o lag em 40%.</p>
+                </div>
+              </div>
+
+              <div class="bg-black/50 p-4 rounded-xl border border-neutral-800 flex gap-4 items-start">
+                <span class="text-neutral-600 font-bold">03.</span>
+                <div>
+                  <h4 class="font-bold text-white">Versão iOS (Talvez)</h4>
+                  <p class="text-sm text-neutral-400">Estamos estudando formas de trazer o Zanshin para iPhone sem necessidade de Jailbreak. (Em pesquisa).</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  }
+
+  <!-- Fixed Corner Button for Bypasser -->
+  @if (view() === 'home') {
+    <button 
+      (click)="toggleView('bypass')"
+      class="fixed bottom-6 left-6 z-40 bg-neutral-900 hover:bg-white hover:text-black text-white p-3 rounded-full shadow-2xl border border-neutral-700 transition-all duration-300 group flex items-center gap-0 hover:gap-2 hover:pr-4 overflow-hidden"
+      title="Bloqueador de Anúncios"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"></line></svg>
+      <span class="w-0 overflow-hidden group-hover:w-auto transition-all text-sm font-bold whitespace-nowrap">Bypasser</span>
+    </button>
+  }
+
+  <!-- Chat Component -->
+  <app-support-chat></app-support-chat>
+
+</div>
