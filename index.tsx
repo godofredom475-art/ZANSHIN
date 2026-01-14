@@ -2,7 +2,10 @@
 import '@angular/compiler';
 import { bootstrapApplication } from '@angular/platform-browser';
 import { provideZonelessChangeDetection } from '@angular/core';
+import { injectSpeedInsights } from '@vercel/speed-insights';
 import { AppComponent } from './src/app.component';
+
+injectSpeedInsights();
 
 bootstrapApplication(AppComponent, {
   providers: [

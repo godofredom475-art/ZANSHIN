@@ -19,6 +19,7 @@
     "@angular/build": "^21.0.0",
     "@angular/cli": "^21.0.0",
     "@angular/compiler-cli": "^21.0.0",
+    "@vercel/speed-insights": "^1.0.0",
     "tailwindcss": "latest"
   },
   "devDependencies": {
